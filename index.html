@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Levalle Basketball - Más que un club, una familia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-profundo: #113366;
+            --naranja-balon: #E88121;
+            --gris-halcon: #A8B1B1;
+            --blanco-off: #F8F9FA;
+            --negro-carbono: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--blanco-off);
+            color: var(--negro-carbono);
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, #1a4d8f 100%);
+            padding: 1.2rem 5%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(17, 51, 102, 0.3);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: white;
+            letter-spacing: 2px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🏀";
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--naranja-balon);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--naranja-balon);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(232, 129, 33, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 129, 33, 0.5);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            background: 
+                linear-gradient(135deg, rgba(17, 51, 102, 0.85) 0%, rgba(17, 51, 102, 0.6) 100%),
+                url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2000') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -100px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(232, 129, 33, 0.03) 10px,
+                    rgba(232, 129, 33, 0.03) 20px
+                );
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 .highlight {
+            color: var(--naranja-balon);
+            display: block;
+            animation: slideInRight 1s ease 0.3s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--naranja-balon);
+            color: white;
+            box-shadow: 0 6px 25px rgba(232, 129, 33, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(232, 129, 33, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--azul-profundo);
+        }
+
+        /* SECCIÓN SOBRE NOSOTROS */
+        .sobre-nosotros {
+            padding: 120px 5%;
+            background: white;
+            position: relative;
+        }
+
+        .sobre-nosotros::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(232, 129, 33, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--azul-profundo);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--naranja-balon);
+        }
+
+        .sobre-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .sobre-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--negro-carbono);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .sobre-text p strong {
+            color: var(--azul-profundo);
+            font-weight: 700;
+        }
+
+        .sobre-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, #1a4d8f 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(17, 51, 102, 0.2);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            color: var(--naranja-balon);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* CATEGORÍAS */
+        .categorias {
+            padding: 120px 5%;
+            background: linear-gradient(180deg, white 0%, var(--blanco-off) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .categorias::before {
+            content: '🏀';
+            position: absolute;
+            font-size: 25rem;
+            opacity: 0.03;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        .categorias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .categoria-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent;
+        }
+
+        .categoria-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--azul-profundo) 0%, var(--naranja-balon) 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .categoria-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .categoria-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--naranja-balon);
+            box-shadow: 0 20px 60px rgba(232, 129, 33, 0.2);
+        }
+
+        .categoria-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--naranja-balon) 0%, #ff9d4a 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 20px rgba(232, 129, 33, 0.3);
+        }
+
+        .categoria-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--azul-profundo);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .categoria-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            font-weight: 300;
+        }
+
+        /* GALERÍA */
+        .galeria {
+            padding: 120px 5%;
+            background: var(--azul-profundo);
+            position: relative;
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+            margin: 80px 0;
+        }
+
+        .galeria .section-title {
+            color: white;
+        }
+
+        .galeria .section-title::after {
+            background: var(--naranja-balon);
+        }
+
+        .galeria-intro {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .galeria-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--gris-halcon);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .galeria-item:hover {
+            transform: scale(1.05);
+        }
+
+        .galeria-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            background: linear-gradient(135deg, rgba(168, 177, 177, 0.3) 0%, rgba(168, 177, 177, 0.6) 100%);
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--naranja-balon);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(232, 129, 33, 0.4);
+        }
+
+        .instagram-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(232, 129, 33, 0.6);
+        }
+
+        /* SPONSORS PREVIEW */
+        .sponsors-preview {
+            padding: 120px 5%;
+            background: white;
+        }
+
+        .sponsors-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .sponsors-highlight {
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, #1a4d8f 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 25px;
+            margin: 3rem 0;
+            box-shadow: 0 15px 50px rgba(17, 51, 102, 0.3);
+        }
+
+        .sponsors-highlight h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .precio-opciones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .precio-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .precio-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--naranja-balon);
+        }
+
+        .precio-card h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--naranja-balon);
+            margin-bottom: 1rem;
+        }
+
+        .precio-valor {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .precio-detalle {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* CONTACTO */
+        .contacto {
+            padding: 120px 5%;
+            background: linear-gradient(180deg, white 0%, var(--blanco-off) 100%);
+        }
+
+        .contacto-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .contacto-info h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--azul-profundo);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--naranja-balon);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-text strong {
+            display: block;
+            color: var(--azul-profundo);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-text p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .contacto-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--azul-profundo);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Barlow', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--naranja-balon);
+            box-shadow: 0 0 0 3px rgba(232, 129, 33, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--naranja-balon);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Barlow', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(232, 129, 33, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 129, 33, 0.5);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--negro-carbono);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--naranja-balon);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--naranja-balon);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--naranja-balon);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* MOBILE MENU */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 400px;
+                height: 100vh;
+                background: var(--azul-profundo);
+                flex-direction: column;
+                padding: 5rem 2rem;
+                gap: 2rem;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.3rem;
+            }
+
+            .cta-button {
+                margin-top: 1rem;
+            }
+
+            .sobre-content,
+            .contacto-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .categorias-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .precio-opciones {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .sobre-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* ANIMACIONES DE SCROLL */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Levalle Basketball</a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">inicio</a></li>
+                <li><a href="#categorias">categorías</a></li>
+                <li><a href="sponsors.html">sponsors</a></li>
+                <li><a href="#contacto">contacto</a></li>
+                <li><a href="#contacto" class="cta-button">¡sumate al equipo!</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>
+                LEVALLE BÁSKET
+                <span class="highlight">MÁS QUE UN CLUB, UNA FAMILIA</span>
+            </h1>
+            <p>Formando deportistas y personas en General Levalle. Desde los primeros pasos hasta la primera división.</p>
+            <div class="hero-buttons">
+                <a href="#categorias" class="btn-primary">ver categorías</a>
+                <a href="sponsors.html" class="btn-secondary">ser sponsor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE NOSOTROS -->
+    <section class="sobre-nosotros fade-in">
+        <div class="container">
+            <h2 class="section-title">quiénes somos</h2>
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <p>En <strong>Levalle Básquet</strong> nos apasiona el juego, pero más nos importa el equipo. Trabajamos cada entrenamiento para que los chicos y jóvenes del pueblo encuentren un espacio de <strong>contención, disciplina y alegría</strong>.</p>
+                    <p>Creemos en el deporte como herramienta de formación integral. No solo buscamos ganar partidos, sino formar personas de bien, con valores y compromiso.</p>
+                    <p><strong>¡Vení a picar la naranja con nosotros!</strong></p>
+                </div>
+                <div class="sobre-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">categorías activas</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">jugadores</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">años de historia</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">pasión por el juego</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORÍAS -->
+    <section class="categorias fade-in" id="categorias">
+        <div class="container">
+            <h2 class="section-title">nuestras categorías</h2>
+            <div class="categorias-grid">
+                <div class="categoria-card">
+                    <div class="categoria-icon">👶</div>
+                    <h3>mosquitos</h3>
+                    <p>4 a 6 años - Iniciación al juego y coordinación. Primeros pasos en el básquet, aprendiendo mientras se divierten.</p>
+                </div>
+                <div class="categoria-card">
+                    <div class="categoria-icon">🎯</div>
+                    <h3>premini / mini</h3>
+                    <p>7 a 12 años - Aprendizaje de fundamentos y amistad. Desarrollando técnica básica y valores del trabajo en equipo.</p>
+                </div>
+                <div class="categoria-card">
+                    <div class="categoria-icon">🏅</div>
+                    <h3>U14 / U16</h3>
+                    <p>Formativas competitivas, técnica individual y táctica. Preparándose para competir al más alto nivel local y regional.</p>
+                </div>
+                <div class="categoria-card">
+                    <div class="categoria-icon">⭐</div>
+                    <h3>primera</h3>
+                    <p>El orgullo de nuestro club. Competencia de alto rendimiento representando a Levalle en toda la provincia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="galeria fade-in">
+        <div class="container">
+            <h2 class="section-title">el día a día en la cancha</h2>
+            <p class="galeria-intro">Cada entrenamiento, cada partido, cada festejo es parte de nuestra historia. Conocé más de cerca lo que vivimos en Levalle Basketball.</p>
+            <div class="galeria-grid">
+                <div class="galeria-item">
+                    <div class="galeria-placeholder">🏀</div>
+                </div>
+                <div class="galeria-item">
+                    <div class="galeria-placeholder">📸</div>
+                </div>
+                <div class="galeria-item">
+                    <div class="galeria-placeholder">🎉</div>
+                </div>
+                <div class="galeria-item">
+                    <div class="galeria-placeholder">🏆</div>
+                </div>
+                <div class="galeria-item">
+                    <div class="galeria-placeholder">👥</div>
+                </div>
+                <div class="galeria-item">
+                    <div class="galeria-placeholder">💪</div>
+                </div>
+            </div>
+            <a href="https://www.instagram.com/basquetlevalle19/" target="_blank" class="instagram-link">
+                📷 seguinos en Instagram @basquetlevalle19
+            </a>
+        </div>
+    </section>
+
+    <!-- SPONSORS PREVIEW -->
+    <section class="sponsors-preview fade-in">
+        <div class="container">
+            <div class="sponsors-content">
+                <h2 class="section-title">apoyá el deporte local</h2>
+                <p style="font-size: 1.2rem; color: #555; margin-bottom: 2rem;">Sé parte de nuestra historia: programa de sponsors 2026</p>
+                
+                <div class="sponsors-highlight">
+                    <h3>tu marca en nuestra camiseta</h3>
+                    <p style="margin-bottom: 2rem;">Apoyá al deporte local y dale visibilidad a tu empresa en nuestra camiseta, banners de cancha y redes sociales.</p>
+                    
+                    <div class="precio-opciones">
+                        <div class="precio-card">
+                            <h4>pago único</h4>
+                            <div class="precio-valor">$80.000</div>
+                            <div class="precio-detalle">bonificado - un solo pago</div>
+                        </div>
+                        <div class="precio-card">
+                            <h4>plan cuotas</h4>
+                            <div class="precio-valor">5 x $20.000</div>
+                            <div class="precio-detalle">marzo a julio 2026</div>
+                        </div>
+                    </div>
+                    
+                    <a href="sponsors.html" class="btn-primary" style="margin-top: 2rem;">ver detalles completos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contacto fade-in" id="contacto">
+        <div class="container">
+            <h2 class="section-title">contacto</h2>
+            <div class="contacto-content">
+                <div class="contacto-info">
+                    <h3>hablemos</h3>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-text">
+                            <strong>ubicación</strong>
+                            <p>General Levalle, Córdoba, Argentina</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📱</div>
+                        <div class="info-text">
+                            <strong>redes sociales</strong>
+                            <p><a href="https://www.instagram.com/basquetlevalle19/" target="_blank" style="color: var(--naranja-balon);">@basquetlevalle19</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⏰</div>
+                        <div class="info-text">
+                            <strong>horarios de consulta</strong>
+                            <p>Lunes a viernes: 17:00 - 21:00hs<br>Sábados: 9:00 - 13:00hs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacto-form">
+                    <form onsubmit="return handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="nombre">nombre y apellido</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="celular">celular</label>
+                            <input type="tel" id="celular" name="celular" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="interes">interés</label>
+                            <select id="interes" name="interes" required>
+                                <option value="">seleccionar...</option>
+                                <option value="inscripciones">inscripciones</option>
+                                <option value="sponsor">ser sponsor</option>
+                                <option value="consulta">consulta general</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">mensaje</label>
+                            <textarea id="mensaje" name="mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">enviar mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Levalle Basketball</h4>
+                <p>Formando deportistas y personas desde 2010. Más que un club, una familia.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/basquetlevalle19/" target="_blank" class="social-link">📷</a>
+                    <a href="#" class="social-link">📘</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>navegación</h4>
+                <p><a href="#inicio">inicio</a></p>
+                <p><a href="#categorias">categorías</a></p>
+                <p><a href="sponsors.html">sponsors</a></p>
+                <p><a href="#contacto">contacto</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>categorías</h4>
+                <p>mosquitos</p>
+                <p>premini / mini</p>
+                <p>U14 / U16</p>
+                <p>primera</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Levalle Basketball. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Header hide on scroll down
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Aquí puedes integrar con tu backend o servicio de email
+            console.log('Formulario enviado:', data);
+            alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+            event.target.reset();
+            
+            return false;
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
