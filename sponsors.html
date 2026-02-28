@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sponsors - Levalle Basketball</title>
+    <meta name="description" content="Programa de sponsors apertura 2026 - Apoyá el deporte local y dale visibilidad a tu marca con Levalle Basketball">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/logo-removebg-preview.png">
     <link rel="apple-touch-icon" href="img/logo-removebg-preview.png">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://levallebasquet.com.ar/sponsors.html">
+    <meta property="og:title" content="Sponsors - Levalle Basketball">
+    <meta property="og:description" content="Programa de sponsors apertura 2026 - Apoyá el deporte local y dale visibilidad a tu marca">
+    <meta property="og:image" content="https://levallebasquet.com.ar/img/difusionSponsors2026.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://levallebasquet.com.ar/sponsors.html">
+    <meta property="twitter:title" content="Sponsors - Levalle Basketball">
+    <meta property="twitter:description" content="Programa de sponsors apertura 2026 - Apoyá el deporte local y dale visibilidad a tu marca">
+    <meta property="twitter:image" content="https://levallebasquet.com.ar/img/difusionSponsors2026.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -62,10 +80,9 @@
             gap: 0.5rem;
         }
 
-        .logo img {
-            height: 40px;
-            width: auto;
-            object-fit: contain;
+        .logo::before {
+            content: "🏀";
+            font-size: 1.5rem;
         }
 
         .nav-links {
@@ -120,7 +137,7 @@
             height: 60vh;
             background: 
                 linear-gradient(135deg, rgba(17, 51, 102, 0.9) 0%, rgba(232, 129, 33, 0.8) 100%),
-                url('https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?q=80&w=2000') center/cover;
+                url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2000') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -634,6 +651,32 @@
             transition: all 0.3s ease;
         }
 
+        .menu-close {
+            display: none;
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .menu-close span {
+            font-size: 2rem;
+            color: white;
+            line-height: 1;
+        }
+
+        .menu-close:hover {
+            background: var(--naranja-balon);
+            transform: rotate(90deg);
+        }
+
         /* RESPONSIVE */
         @media (max-width: 968px) {
             .menu-toggle {
@@ -659,12 +702,19 @@
                 right: 0;
             }
 
+            .nav-links.active .menu-close {
+                display: flex;
+            }
+
             .nav-links a {
                 font-size: 1.3rem;
             }
 
-            .cta-button {
+            .nav-links .cta-button {
                 margin-top: 1rem;
+                width: 100%;
+                text-align: center;
+                display: block;
             }
 
             .planes-grid {
@@ -706,13 +756,16 @@
     <!-- HEADER -->
     <header>
         <nav>
-            <a href="index.html" class="logo"><img src="img/logo-removebg-preview.png" alt="Levalle Basketball">Levalle Basketball</a>
+            <a href="index.html" class="logo">Levalle Basketball</a>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <ul class="nav-links">
+                <div class="menu-close" onclick="toggleMenu()">
+                    <span>✕</span>
+                </div>
                 <li><a href="index.html#inicio">Inicio</a></li>
                 <li><a href="index.html#categorias">Categorías</a></li>
                 <li><a href="sponsors.html">Sponsors</a></li>
@@ -733,14 +786,14 @@
     <!-- BENEFICIOS -->
     <section class="beneficios fade-in">
         <div class="container">
-            <h2 class="section-title">Beneficios de ser sponsor</h2>
+            <h2 class="section-title">beneficios de ser sponsor</h2>
             <p class="intro-text">Al convertirte en sponsor de Levalle Basketball, no solo estás apoyando el deporte local, sino que también obtenés una excelente visibilidad para tu marca en toda la región.</p>
             
             <div class="beneficios-grid">
                 <div class="beneficio-card">
-                    <span class="beneficio-icon">👕</span>
-                    <h3>Logo en camiseta</h3>
-                    <p>Tu marca en las camisetas oficiales de todas nuestras categorías, visible en cada partido y entrenamiento.</p>
+                    <span class="beneficio-icon">🏆</span>
+                    <h3>Torneos regionales</h3>
+                    <p>Ayudás a financiar la participación del club en torneos y competencias a nivel regional y provincial.</p>
                 </div>
                 <div class="beneficio-card">
                     <span class="beneficio-icon">🏟️</span>
@@ -753,9 +806,9 @@
                     <p>Menciones y agradecimientos en nuestras redes sociales con miles de seguidores activos de la comunidad.</p>
                 </div>
                 <div class="beneficio-card">
-                    <span class="beneficio-icon">🎯</span>
-                    <h3>Asociación local</h3>
-                    <p>Tu marca asociada a valores positivos: deporte, familia, comunidad y desarrollo de jóvenes.</p>
+                    <span class="beneficio-icon">⚡</span>
+                    <h3>Potenciar el deporte local</h3>
+                    <p>Contribuís al desarrollo deportivo de General Levalle, fortaleciendo opciones saludables para jóvenes.</p>
                 </div>
                 <div class="beneficio-card">
                     <span class="beneficio-icon">📸</span>
@@ -774,7 +827,7 @@
     <!-- PLANES -->
     <section class="planes fade-in">
         <div class="container">
-            <h2 class="section-title">Planes de sponsoreo</h2>
+            <h2 class="section-title">planes de sponsoreo</h2>
             <p class="intro-text">Elegí la opción que mejor se adapte a tus posibilidades. Ambos planes incluyen los mismos beneficios completos.</p>
             
             <div class="planes-grid">
@@ -791,7 +844,7 @@
                     </div>
                     <div class="plan-body">
                         <ul class="plan-features">
-                            <li>Logo en camisetas oficiales</li>
+                            <li>Apoyo a torneos regionales</li>
                             <li>Banner permanente en cancha</li>
                             <li>Menciones en redes sociales</li>
                             <li>Contenido audiovisual</li>
@@ -816,7 +869,7 @@
                     </div>
                     <div class="plan-body">
                         <ul class="plan-features">
-                            <li>Logo en camisetas oficiales</li>
+                            <li>Apoyo a torneos regionales</li>
                             <li>Banner permanente en cancha</li>
                             <li>Menciones en redes sociales</li>
                             <li>Contenido audiovisual</li>
@@ -835,33 +888,33 @@
     <!-- SPONSORS ACTUALES -->
     <section class="sponsors-actuales fade-in">
         <div class="container">
-            <h2 class="section-title">Nuestros sponsors</h2>
+            <h2 class="section-title">nuestros sponsors</h2>
             <p class="sponsors-intro">Estas empresas y comercios locales ya son parte de la familia Levalle Basketball. ¡Unite vos también!</p>
             
             <div class="sponsors-grid">
                 <div class="sponsor-placeholder destacado">
                     <div class="icon">⭐</div>
-                    <div class="text">Tu marca aquí</div>
+                    <div class="text">tu marca aquí</div>
                 </div>
                 <div class="sponsor-placeholder">
                     <div class="icon">🏢</div>
-                    <div class="text">Logo sponsor</div>
+                    <div class="text">logo sponsor</div>
                 </div>
                 <div class="sponsor-placeholder">
                     <div class="icon">🏢</div>
-                    <div class="text">Logo sponsor</div>
+                    <div class="text">logo sponsor</div>
                 </div>
                 <div class="sponsor-placeholder">
                     <div class="icon">🏢</div>
-                    <div class="text">Logo sponsor</div>
+                    <div class="text">logo sponsor</div>
                 </div>
                 <div class="sponsor-placeholder">
                     <div class="icon">🏢</div>
-                    <div class="text">Logo sponsor</div>
+                    <div class="text">logo sponsor</div>
                 </div>
                 <div class="sponsor-placeholder">
                     <div class="icon">🏢</div>
-                    <div class="text">Logo sponsor</div>
+                    <div class="text">logo sponsor</div>
                 </div>
             </div>
         </div>
@@ -870,23 +923,23 @@
     <!-- PROCESO -->
     <section class="proceso fade-in">
         <div class="container">
-            <h2 class="section-title">Cómo ser sponsor</h2>
+            <h2 class="section-title">cómo ser sponsor</h2>
             <p class="intro-text">El proceso es simple y rápido. En solo 3 pasos tu marca estará presente en Levalle Basketball.</p>
             
             <div class="proceso-steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Contactanos</h3>
+                    <h3>contactanos</h3>
                     <p>Escribinos por Instagram, WhatsApp o completá el formulario. Te responderemos en menos de 24 horas.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Elegí tu plan</h3>
+                    <h3>elegí tu plan</h3>
                     <p>Decidí si preferís el pago único bonificado o el plan en cuotas. Coordinamos detalles del logo y ubicación.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>¡Listo!</h3>
+                    <h3>¡listo!</h3>
                     <p>Recibís tu certificado de sponsor y tu marca comienza a verse en camisetas, banners y redes sociales.</p>
                 </div>
             </div>
@@ -918,7 +971,11 @@
                 <h4>Levalle Basketball</h4>
                 <p>Formando deportistas y personas desde 2010. Más que un club, una familia.</p>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/basquetlevalle19/" target="_blank" class="social-link">📷</a>
+                    <a href="https://www.instagram.com/basquetlevalle19/" target="_blank" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
                     <a href="#" class="social-link">📘</a>
                 </div>
             </div>
@@ -930,11 +987,11 @@
                 <p><a href="index.html#contacto">Contacto</a></p>
             </div>
             <div class="footer-section">
-                <h4>Sponsors</h4>
-                <p><a href="#beneficios">Beneficios</a></p>
-                <p><a href="#planes">Planes</a></p>
-                <p><a href="#proceso">Cómo ser sponsor</a></p>
-                <p><a href="#contactar">Contacto</a></p>
+                <h4>Categorías</h4>
+                <p>Mosquitos</p>
+                <p>Premini / Mini</p>
+                <p>U14 / U16</p>
+                <p>Primera</p>
             </div>
         </div>
         <div class="footer-bottom">
