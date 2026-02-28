@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Levalle Basketball - Más que un club, una familia</title>
+    <link rel="icon" type="image/png" href="img/logo-removebg-preview.png">
+    <link rel="apple-touch-icon" href="img/logo-removebg-preview.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -66,9 +68,10 @@
             gap: 0.5rem;
         }
 
-        .logo::before {
-            content: "🏀";
-            font-size: 1.5rem;
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -871,7 +874,7 @@
     <!-- HEADER -->
     <header>
         <nav>
-            <a href="#" class="logo">Levalle Basketball</a>
+            <a href="#" class="logo"><img src="img/logo-removebg-preview.png" alt="Levalle Basketball">Levalle Basketball</a>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -1087,6 +1090,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
+                <img src="img/logo-removebg-preview.png" alt="Levalle Basketball" style="height: 80px; width: auto; margin-bottom: 1rem;">
                 <h4>Levalle Basketball</h4>
                 <p>Formando deportistas y personas desde 2010. Más que un club, una familia.</p>
                 <div class="social-links">
