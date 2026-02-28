@@ -464,6 +464,12 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             margin: 3rem 0;
+            align-items: stretch;
+        }
+
+        .instagram-posts-grid .instagram-media {
+            height: 100%;
+            min-height: 600px;
         }
 
         @media (max-width: 968px) {
@@ -475,6 +481,10 @@
         @media (max-width: 640px) {
             .instagram-posts-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .instagram-posts-grid .instagram-media {
+                min-height: auto;
             }
         }
 
