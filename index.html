@@ -580,10 +580,7 @@
         }
 
         .contacto-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            max-width: 1200px;
+            max-width: 700px;
             margin: 3rem auto 0;
         }
 
@@ -631,69 +628,6 @@
             line-height: 1.6;
         }
 
-        .contacto-form {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            color: var(--azul-profundo);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-family: 'Barlow', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--naranja-balon);
-            box-shadow: 0 0 0 3px rgba(232, 129, 33, 0.1);
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: var(--naranja-balon);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Barlow', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(232, 129, 33, 0.3);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(232, 129, 33, 0.5);
-        }
 
         /* FOOTER */
         footer {
@@ -812,8 +746,7 @@
                 margin-top: 1rem;
             }
 
-            .sobre-content,
-            .contacto-content {
+            .sobre-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
@@ -878,11 +811,11 @@
                 <span></span>
             </div>
             <ul class="nav-links">
-                <li><a href="#inicio">inicio</a></li>
-                <li><a href="#categorias">categorías</a></li>
-                <li><a href="sponsors.html">sponsors</a></li>
-                <li><a href="#contacto">contacto</a></li>
-                <li><a href="#contacto" class="cta-button">¡sumate al equipo!</a></li>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#categorias">Categorías</a></li>
+                <li><a href="sponsors.html">Sponsors</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#contacto" class="cta-button">¡Sumate al equipo!</a></li>
             </ul>
         </nav>
     </header>
@@ -896,8 +829,8 @@
             </h1>
             <p>Formando deportistas y personas en General Levalle. Desde los primeros pasos hasta la primera división.</p>
             <div class="hero-buttons">
-                <a href="#categorias" class="btn-primary">ver categorías</a>
-                <a href="sponsors.html" class="btn-secondary">ser sponsor</a>
+                <a href="#categorias" class="btn-primary">Ver categorías</a>
+                <a href="sponsors.html" class="btn-secondary">Ser sponsor</a>
             </div>
         </div>
     </section>
@@ -905,7 +838,7 @@
     <!-- SOBRE NOSOTROS -->
     <section class="sobre-nosotros fade-in">
         <div class="container">
-            <h2 class="section-title">quiénes somos</h2>
+            <h2 class="section-title">Quiénes somos</h2>
             <div class="sobre-content">
                 <div class="sobre-text">
                     <p>En <strong>Levalle Básquet</strong> nos apasiona el juego, pero más nos importa el equipo. Trabajamos cada entrenamiento para que los chicos y jóvenes del pueblo encuentren un espacio de <strong>contención, disciplina y alegría</strong>.</p>
@@ -937,16 +870,16 @@
     <!-- CATEGORÍAS -->
     <section class="categorias fade-in" id="categorias">
         <div class="container">
-            <h2 class="section-title">nuestras categorías</h2>
+            <h2 class="section-title">Nuestras categorías</h2>
             <div class="categorias-grid">
                 <div class="categoria-card">
                     <div class="categoria-icon">👶</div>
-                    <h3>mosquitos</h3>
+                    <h3>Mosquitos</h3>
                     <p>4 a 6 años - Iniciación al juego y coordinación. Primeros pasos en el básquet, aprendiendo mientras se divierten.</p>
                 </div>
                 <div class="categoria-card">
                     <div class="categoria-icon">🎯</div>
-                    <h3>premini / mini</h3>
+                    <h3>Premini / Mini</h3>
                     <p>7 a 12 años - Aprendizaje de fundamentos y amistad. Desarrollando técnica básica y valores del trabajo en equipo.</p>
                 </div>
                 <div class="categoria-card">
@@ -956,7 +889,7 @@
                 </div>
                 <div class="categoria-card">
                     <div class="categoria-icon">⭐</div>
-                    <h3>primera</h3>
+                    <h3>Primera</h3>
                     <p>El orgullo de nuestro club. Competencia de alto rendimiento representando a Levalle en toda la provincia.</p>
                 </div>
             </div>
@@ -966,7 +899,7 @@
     <!-- GALERÍA -->
     <section class="galeria fade-in">
         <div class="container">
-            <h2 class="section-title">el día a día en la cancha</h2>
+            <h2 class="section-title">El día a día en la cancha</h2>
             <p class="galeria-intro">Cada entrenamiento, cada partido, cada festejo es parte de nuestra historia. Conocé más de cerca lo que vivimos en Levalle Basketball.</p>
             <div class="galeria-grid">
                 <div class="galeria-item">
@@ -989,7 +922,7 @@
                 </div>
             </div>
             <a href="https://www.instagram.com/basquetlevalle19/" target="_blank" class="instagram-link">
-                📷 seguinos en Instagram @basquetlevalle19
+                📷 Seguinos en Instagram @basquetlevalle19
             </a>
         </div>
     </section>
@@ -998,27 +931,27 @@
     <section class="sponsors-preview fade-in">
         <div class="container">
             <div class="sponsors-content">
-                <h2 class="section-title">apoyá el deporte local</h2>
+                <h2 class="section-title">Apoyá el deporte local</h2>
                 <p style="font-size: 1.2rem; color: #555; margin-bottom: 2rem;">Sé parte de nuestra historia: programa de sponsors 2026</p>
                 
                 <div class="sponsors-highlight">
-                    <h3>tu marca en nuestra camiseta</h3>
+                    <h3>Tu marca en nuestra camiseta</h3>
                     <p style="margin-bottom: 2rem;">Apoyá al deporte local y dale visibilidad a tu empresa en nuestra camiseta, banners de cancha y redes sociales.</p>
                     
                     <div class="precio-opciones">
                         <div class="precio-card">
-                            <h4>pago único</h4>
+                            <h4>Pago único</h4>
                             <div class="precio-valor">$80.000</div>
                             <div class="precio-detalle">bonificado - un solo pago</div>
                         </div>
                         <div class="precio-card">
-                            <h4>plan cuotas</h4>
+                            <h4>Plan cuotas</h4>
                             <div class="precio-valor">5 x $20.000</div>
                             <div class="precio-detalle">marzo a julio 2026</div>
                         </div>
                     </div>
                     
-                    <a href="sponsors.html" class="btn-primary" style="margin-top: 2rem;">ver detalles completos</a>
+                    <a href="sponsors.html" class="btn-primary" style="margin-top: 2rem;">Ver detalles completos</a>
                 </div>
             </div>
         </div>
@@ -1027,57 +960,39 @@
     <!-- CONTACTO -->
     <section class="contacto fade-in" id="contacto">
         <div class="container">
-            <h2 class="section-title">contacto</h2>
+            <h2 class="section-title">Contacto</h2>
             <div class="contacto-content">
                 <div class="contacto-info">
-                    <h3>hablemos</h3>
+                    <h3>Hablemos</h3>
                     <div class="info-item">
                         <div class="info-icon">📍</div>
                         <div class="info-text">
-                            <strong>ubicación</strong>
+                            <strong>Ubicación</strong>
                             <p>General Levalle, Córdoba, Argentina</p>
                         </div>
                     </div>
                     <div class="info-item">
                         <div class="info-icon">📱</div>
                         <div class="info-text">
-                            <strong>redes sociales</strong>
+                            <strong>WhatsApp</strong>
+                            <p><a href="https://wa.me/5493385460595" target="_blank" style="color: var(--naranja-balon);">+54 9 3385 46-0595</a></p>
+                            <p><a href="https://wa.me/5493385407541" target="_blank" style="color: var(--naranja-balon);">+54 9 3385 40-7541</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📷</div>
+                        <div class="info-text">
+                            <strong>Instagram</strong>
                             <p><a href="https://www.instagram.com/basquetlevalle19/" target="_blank" style="color: var(--naranja-balon);">@basquetlevalle19</a></p>
                         </div>
                     </div>
                     <div class="info-item">
                         <div class="info-icon">⏰</div>
                         <div class="info-text">
-                            <strong>horarios de consulta</strong>
+                            <strong>Horarios de consulta</strong>
                             <p>Lunes a viernes: 17:00 - 21:00hs<br>Sábados: 9:00 - 13:00hs</p>
                         </div>
                     </div>
-                </div>
-                <div class="contacto-form">
-                    <form onsubmit="return handleSubmit(event)">
-                        <div class="form-group">
-                            <label for="nombre">nombre y apellido</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="celular">celular</label>
-                            <input type="tel" id="celular" name="celular" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="interes">interés</label>
-                            <select id="interes" name="interes" required>
-                                <option value="">seleccionar...</option>
-                                <option value="inscripciones">inscripciones</option>
-                                <option value="sponsor">ser sponsor</option>
-                                <option value="consulta">consulta general</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="mensaje">mensaje</label>
-                            <textarea id="mensaje" name="mensaje" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">enviar mensaje</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -1095,18 +1010,18 @@
                 </div>
             </div>
             <div class="footer-section">
-                <h4>navegación</h4>
-                <p><a href="#inicio">inicio</a></p>
-                <p><a href="#categorias">categorías</a></p>
-                <p><a href="sponsors.html">sponsors</a></p>
-                <p><a href="#contacto">contacto</a></p>
+                <h4>Navegación</h4>
+                <p><a href="#inicio">Inicio</a></p>
+                <p><a href="#categorias">Categorías</a></p>
+                <p><a href="sponsors.html">Sponsors</a></p>
+                <p><a href="#contacto">Contacto</a></p>
             </div>
             <div class="footer-section">
-                <h4>categorías</h4>
-                <p>mosquitos</p>
-                <p>premini / mini</p>
+                <h4>Categorías</h4>
+                <p>Mosquitos</p>
+                <p>Premini / Mini</p>
                 <p>U14 / U16</p>
-                <p>primera</p>
+                <p>Primera</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1152,20 +1067,6 @@
             
             lastScroll = currentScroll;
         });
-
-        // Form submission
-        function handleSubmit(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData);
-            
-            // Aquí puedes integrar con tu backend o servicio de email
-            console.log('Formulario enviado:', data);
-            alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
-            event.target.reset();
-            
-            return false;
-        }
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
