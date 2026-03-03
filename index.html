@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Levalle Basketball - Más que un club, una familia</title>
+    <meta name="description" content="Club de básquet en General Levalle, Córdoba. Categorías desde Mosquitos hasta Primera. Formando deportistas y personas desde 2010.">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/logo-removebg-preview.png">
     <link rel="apple-touch-icon" href="img/logo-removebg-preview.png">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://levallebasquet.com.ar/">
+    <meta property="og:title" content="Levalle Basketball - Más que un club, una familia">
+    <meta property="og:description" content="Club de básquet en General Levalle, Córdoba. Categorías desde Mosquitos hasta Primera.">
+    <meta property="og:image" content="https://levallebasquet.com.ar/img/logo-removebg-preview.png">
+    <meta property="og:image:alt" content="Logo Levalle Basketball">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://levallebasquet.com.ar/">
+    <meta property="twitter:title" content="Levalle Basketball - Más que un club, una familia">
+    <meta property="twitter:description" content="Club de básquet en General Levalle, Córdoba. Categorías desde Mosquitos hasta Primera.">
+    <meta property="twitter:image" content="https://levallebasquet.com.ar/img/logo-removebg-preview.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -580,6 +599,133 @@
             background: linear-gradient(180deg, white 0%, var(--blanco-off) 100%);
         }
 
+        /* SPONSORS LOGOS HOME */
+        .sponsors-home {
+            padding: 100px 5%;
+            background: var(--azul-profundo);
+            position: relative;
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+            margin: 80px 0;
+        }
+
+        .sponsors-home .section-title {
+            color: white;
+        }
+
+        .sponsors-home .section-title::after {
+            background: var(--naranja-balon);
+        }
+
+        .sponsors-home-intro {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+
+        .sponsors-home-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .sponsor-home-logo {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .sponsor-home-logo:hover {
+            transform: scale(1.05);
+            background: white;
+        }
+
+        .sponsor-home-logo img {
+            max-width: 100%;
+            max-height: 120px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .sponsor-home-placeholder {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 3px dashed var(--gris-halcon);
+        }
+
+        .sponsor-home-placeholder:hover {
+            transform: scale(1.05);
+            border-color: var(--naranja-balon);
+            background: white;
+        }
+
+        .sponsor-home-placeholder .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .sponsor-home-placeholder .text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            color: var(--gris-halcon);
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .sponsor-home-placeholder.destacado {
+            background: linear-gradient(135deg, var(--naranja-balon) 0%, #ff9d4a 100%);
+            border: none;
+        }
+
+        .sponsor-home-placeholder.destacado .text {
+            color: white;
+        }
+
+        .sponsor-home-placeholder.destacado .icon {
+            opacity: 1;
+        }
+
+        /* APOYO HOME */
+        .apoyo-home {
+            padding: 80px 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .apoyo-home .section-title {
+            margin-bottom: 3rem;
+        }
+
+        .apoyo-home-logo {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .apoyo-home-logo img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
         .contacto-content {
             max-width: 700px;
             margin: 3rem auto 0;
@@ -888,7 +1034,7 @@
                         <span class="stat-label">categorías activas</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number">50+</span>
+                        <span class="stat-number">100+</span>
                         <span class="stat-label">jugadores</span>
                     </div>
                     <div class="stat-card">
@@ -1028,6 +1174,56 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPONSORS LOGOS -->
+    <section class="sponsors-home fade-in">
+        <div class="container">
+            <h2 class="section-title">Nuestros sponsors</h2>
+            <p class="sponsors-home-intro">Gracias a estas empresas y comercios locales que apoyan el deporte en General Levalle.</p>
+            
+            <div class="sponsors-home-grid">
+                <div class="sponsor-home-logo">
+                    <img src="img/sponsors/1.png" alt="Sponsor 1">
+                </div>
+                <div class="sponsor-home-logo">
+                    <img src="img/sponsors/2.PNG" alt="Sponsor 2">
+                </div>
+                <div class="sponsor-home-logo">
+                    <img src="img/sponsors/3.jpeg" alt="Sponsor 3">
+                </div>
+                <div class="sponsor-home-logo">
+                    <img src="img/sponsors/4.jpeg" alt="Sponsor 4">
+                </div>
+                <div class="sponsor-home-logo">
+                    <img src="img/sponsors/5.jpeg" alt="Sponsor 5">
+                </div>
+                <div class="sponsor-home-logo">
+                    <img src="img/sponsors/6.jpeg" alt="Sponsor 6">
+                </div>
+                <div class="sponsor-home-logo">
+                    <img src="img/sponsors/7.jpeg" alt="Sponsor 7">
+                </div>
+                <div class="sponsor-home-placeholder">
+                    <div class="icon">🏢</div>
+                    <div class="text">Corralón Rossatto</div>
+                </div>
+                <div class="sponsor-home-placeholder destacado">
+                    <div class="icon">⭐</div>
+                    <div class="text">Tu marca aquí</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CON EL APOYO DE -->
+    <section class="apoyo-home fade-in">
+        <div class="container">
+            <h2 class="section-title">Con el apoyo de</h2>
+            <div class="apoyo-home-logo">
+                <img src="img/sponsors/apoyo.jpeg" alt="Con el apoyo de">
             </div>
         </div>
     </section>
