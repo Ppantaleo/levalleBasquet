@@ -16,6 +16,9 @@
     <meta property="og:title" content="Sponsors - Levalle Basketball">
     <meta property="og:description" content="Programa de sponsors apertura 2026 - Apoyá el deporte local y dale visibilidad a tu marca">
     <meta property="og:image" content="https://levallebasquet.com.ar/img/difusionSponsors2026.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Sponsors Levalle Basketball 2026">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -80,9 +83,10 @@
             gap: 0.5rem;
         }
 
-        .logo::before {
-            content: "🏀";
-            font-size: 1.5rem;
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -410,6 +414,31 @@
             margin-top: 4rem;
         }
 
+        .sponsor-logo {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .sponsor-logo:hover {
+            transform: scale(1.05);
+            background: white;
+        }
+
+        .sponsor-logo img {
+            max-width: 100%;
+            max-height: 120px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
         .sponsor-placeholder {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
@@ -511,6 +540,30 @@
             background: linear-gradient(135deg, var(--azul-profundo) 0%, #1a4d8f 100%);
             text-align: center;
             color: white;
+        }
+
+        /* APOYO */
+        .apoyo-section {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .apoyo-section .section-title {
+            margin-bottom: 3rem;
+        }
+
+        .apoyo-logo {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .apoyo-logo img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
         .contacto-cta h2 {
@@ -756,7 +809,7 @@
     <!-- HEADER -->
     <header>
         <nav>
-            <a href="index.html" class="logo">Levalle Basketball</a>
+            <a href="index.html" class="logo"><img src="img/logo-removebg-preview.png" alt="Levalle Basketball">Levalle Basketball</a>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -786,7 +839,7 @@
     <!-- BENEFICIOS -->
     <section class="beneficios fade-in">
         <div class="container">
-            <h2 class="section-title">beneficios de ser sponsor</h2>
+            <h2 class="section-title">Beneficios de ser sponsor</h2>
             <p class="intro-text">Al convertirte en sponsor de Levalle Basketball, no solo estás apoyando el deporte local, sino que también obtenés una excelente visibilidad para tu marca en toda la región.</p>
             
             <div class="beneficios-grid">
@@ -827,13 +880,13 @@
     <!-- PLANES -->
     <section class="planes fade-in">
         <div class="container">
-            <h2 class="section-title">planes de sponsoreo</h2>
+            <h2 class="section-title">Planes de sponsoreo</h2>
             <p class="intro-text">Elegí la opción que mejor se adapte a tus posibilidades. Ambos planes incluyen los mismos beneficios completos.</p>
             
             <div class="planes-grid">
                 <!-- Plan Pago Único -->
                 <div class="plan-card plan-destacado">
-                    <div class="plan-badge">bonificado</div>
+                    <div class="plan-badge">Bonificado</div>
                     <div class="plan-header">
                         <div class="plan-nombre">Pago único</div>
                         <div class="plan-precio">
@@ -888,33 +941,28 @@
     <!-- SPONSORS ACTUALES -->
     <section class="sponsors-actuales fade-in">
         <div class="container">
-            <h2 class="section-title">nuestros sponsors</h2>
+            <h2 class="section-title">Nuestros sponsors</h2>
             <p class="sponsors-intro">Estas empresas y comercios locales ya son parte de la familia Levalle Basketball. ¡Unite vos también!</p>
             
             <div class="sponsors-grid">
+                <div class="sponsor-logo">
+                    <img src="img/sponsors/1.jpeg" alt="Sponsor 1">
+                </div>
+                <div class="sponsor-logo">
+                    <img src="img/sponsors/2.jpeg" alt="Sponsor 2">
+                </div>
+                <div class="sponsor-logo">
+                    <img src="img/sponsors/3.jpeg" alt="Sponsor 3">
+                </div>
+                <div class="sponsor-logo">
+                    <img src="img/sponsors/4.jpeg" alt="Sponsor 4">
+                </div>
+                <div class="sponsor-logo">
+                    <img src="img/sponsors/5.jpeg" alt="Sponsor 5">
+                </div>
                 <div class="sponsor-placeholder destacado">
                     <div class="icon">⭐</div>
-                    <div class="text">tu marca aquí</div>
-                </div>
-                <div class="sponsor-placeholder">
-                    <div class="icon">🏢</div>
-                    <div class="text">logo sponsor</div>
-                </div>
-                <div class="sponsor-placeholder">
-                    <div class="icon">🏢</div>
-                    <div class="text">logo sponsor</div>
-                </div>
-                <div class="sponsor-placeholder">
-                    <div class="icon">🏢</div>
-                    <div class="text">logo sponsor</div>
-                </div>
-                <div class="sponsor-placeholder">
-                    <div class="icon">🏢</div>
-                    <div class="text">logo sponsor</div>
-                </div>
-                <div class="sponsor-placeholder">
-                    <div class="icon">🏢</div>
-                    <div class="text">logo sponsor</div>
+                    <div class="text">Tu marca aquí</div>
                 </div>
             </div>
         </div>
@@ -923,25 +971,35 @@
     <!-- PROCESO -->
     <section class="proceso fade-in">
         <div class="container">
-            <h2 class="section-title">cómo ser sponsor</h2>
+            <h2 class="section-title">Cómo ser sponsor</h2>
             <p class="intro-text">El proceso es simple y rápido. En solo 3 pasos tu marca estará presente en Levalle Basketball.</p>
             
             <div class="proceso-steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>contactanos</h3>
+                    <h3>Contactanos</h3>
                     <p>Escribinos por Instagram, WhatsApp o completá el formulario. Te responderemos en menos de 24 horas.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>elegí tu plan</h3>
+                    <h3>Elegí tu plan</h3>
                     <p>Decidí si preferís el pago único bonificado o el plan en cuotas. Coordinamos detalles del logo y ubicación.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>¡listo!</h3>
+                    <h3>¡Listo!</h3>
                     <p>Recibís tu certificado de sponsor y tu marca comienza a verse en camisetas, banners y redes sociales.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CON EL APOYO DE -->
+    <section class="apoyo-section fade-in">
+        <div class="container">
+            <h2 class="section-title">Con el apoyo de</h2>
+            <div class="apoyo-logo">
+                <img src="img/sponsors/apoyo.jpeg" alt="Con el apoyo de">
             </div>
         </div>
     </section>
