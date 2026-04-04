@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pizarrón táctico — Levalle Básquet</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #ffffff; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+
+const PASS = "levalle2026";
+const BLC = "#113366", ORC = "#E88121", GLD = "#FFD700";
+const LBL = "#6BB6FF", CYN = "#4FC3F7", SOR = "#FF9800";
+const CW = 460, CH = 578;
+const PL = 140, PR = 320, PT = 228, BLINE = 515;
+const CX = 230, BKY = 448, R = 17;
+const T3R = 240;
+
+function Mrkrs() {
+  return (
+    <defs>
+      <marker id="mC"  markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill={GLD}/></marker>
+      <marker id="mC2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill={LBL}/></marker>
+      <marker id="mS"  markerWidth="8"  markerHeight="6" refX="7" refY="3"   orient="auto"><polygon points="0 0,8 3,0 6"    fill={SOR}/></marker>
+      <marker id="mP"  markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="white"/></marker>
+    </defs>
+  );
+}
+
+function CourtBg() {
+  return (
+    <>
+      <rect width={CW} height={CH} fill="#C89550"/>
+      {[80,160,240,320,400,480].map(y =>
+        <line key={y} x1="0" y1={y} x2={CW} y2={y} stroke="#B8844A" strokeWidth=".5"/>
+      )}
+      <line x1="0"  y1={BLINE} x2={CW} y2={BLINE} stroke="white" strokeWidth="2.5"/>
+      <line x1="0"  y1="0"     x2="0"  y2={BLINE} stroke="white" strokeWidth="2"/>
+      <line x1={CW} y1="0"     x2={CW} y2={BLINE} stroke="white" strokeWidth="2"/>
+      <path d={`M 0 ${BLINE} A ${T3R} ${T3R} 0 1 0 ${CW} ${BLINE}`}
+        fill="none" stroke="white" strokeWidth="2.5"/>
+      <rect x={PL} y={PT} width={PR-PL} height={BLINE-PT} fill="#B88040" stroke="white" strokeWidth="2"/>
+      <line x1={PL} y1={PT} x2={PR} y2={PT} stroke="white" strokeWidth="2"/>
+      <path d={`M ${CX-70} ${PT} A 70 70 0 0 0 ${CX+70} ${PT}`}
+        fill="none" stroke="white" strokeWidth="2"/>
+      <path d={`M ${CX-70} ${PT} A 70 70 0 0 1 ${CX+70} ${PT}`}
+        fill="none" stroke="white" strokeWidth="2" strokeDasharray="9,6"/>
+      <path d={`M ${CX-40} ${BKY} A 40 40 0 0 0 ${CX+40} ${BKY}`}
+        fill="none" stroke="white" strokeWidth="2" strokeDasharray="8,5"/>
+      {[BKY-18, BKY+26].map(y => (
+        <g key={y}>
+          <line x1={PL} y1={y} x2={PL+15} y2={y} stroke="white" strokeWidth="2"/>
+          <line x1={PR} y1={y} x2={PR-15}  y2={y} stroke="white" strokeWidth="2"/>
+        </g>
+      ))}
+      <rect x={CX-36} y={BKY+29} width="72" height="5" rx="1" fill="none" stroke="white" strokeWidth="3"/>
+      <line x1={CX} y1={BKY+19} x2={CX} y2={BKY+29} stroke="rgba(255,255,255,.35)" strokeWidth="2"/>
+      <circle cx={CX} cy={BKY} r="19" fill="none" stroke="#FF8C00" strokeWidth="3.5"/>
+    </>
+  );
+}
+
+function JP({x,y,n,fill=BLC}){
+  return(<>
+    <circle cx={x} cy={y} r={R} fill={fill} stroke="white" strokeWidth="2.5"/>
+    <text x={x} y={y+6} textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">{n}</text>
+  </>);
+}
+function SBar({x,y,h=false}){
+  return h
+    ? <line x1={x-16} y1={y}    x2={x+16} y2={y}    stroke={CYN} strokeWidth="5" strokeLinecap="round"/>
+    : <line x1={x}    y1={y-16} x2={x}    y2={y+16} stroke={CYN} strokeWidth="5" strokeLinecap="round"/>;
+}
+function Ball({x,y}){
+  return(<>
+    <circle cx={x} cy={y} r="9" fill="#FF8C00" stroke="white" strokeWidth="1.5"/>
+    <line x1={x-9} y1={y}   x2={x+9} y2={y}   stroke="rgba(0,0,0,.3)" strokeWidth="1.2"/>
+    <line x1={x}   y1={y-9} x2={x}   y2={y+9} stroke="rgba(0,0,0,.3)" strokeWidth="1.2"/>
+  </>);
+}
+function A({d=0,anim,children}){
+  return(<g style={anim?{animation:`fIn .45s ${d}s both`}:{opacity:1}}>{children}</g>);
+}
+function Inbounder(){
+  return(<>
+    <JP x={382} y={528} n="1" fill={ORC}/>
+    <Ball x={360} y={520}/>
+    <text x="382" y="552" textAnchor="middle" fill="rgba(255,255,255,.65)" fontSize="10" letterSpacing="1">SACA</text>
+  </>);
+}
+
+// ── SALIDAS ──
+
+function PlayJ11({anim}){return(<>
+  <A d={0} anim={anim}>
+    <path d="M 302 448 Q 248 432 196 443" fill="none" stroke={SOR} strokeWidth="2.5" strokeDasharray="7,4" markerEnd="url(#mS)"/>
+    <path d="M 157 230 Q 210 215 264 225" fill="none" stroke={SOR} strokeWidth="2.5" strokeDasharray="7,4" markerEnd="url(#mS)"/>
+  </A>
+  <A d={.75} anim={anim}><SBar x={192} y={443}/><SBar x={270} y={228} h/></A>
+  <A d={1.4} anim={anim}>
+    <path d="M 157 448 Q 182 464 192 447 Q 203 429 268 437 L 300 443" fill="none" stroke={GLD} strokeWidth="3" markerEnd="url(#mC)"/>
+    <path d="M 307 238 Q 284 320 260 402" fill="none" stroke={LBL} strokeWidth="2.5" strokeDasharray="5,3" markerEnd="url(#mC2)"/>
+  </A>
+  <A d={2.1} anim={anim}><line x1="379" y1="522" x2="302" y2="445" stroke="white" strokeWidth="2.5" strokeDasharray="8,5" markerEnd="url(#mP)"/></A>
+  <JP x={140} y={230} n="5"/><JP x={320} y={230} n="4"/>
+  <JP x={140} y={448} n="3"/><JP x={320} y={448} n="2"/>
+  <Inbounder/>
+</>);}
+
+function PlayJ12({anim}){return(<>
+  <A d={0} anim={anim}>
+    <path d="M 302 445 Q 308 355 297 268" fill="none" stroke={SOR} strokeWidth="2.5" strokeDasharray="7,4" markerEnd="url(#mS)"/>
+    <path d="M 157 232 Q 152 322 155 412" fill="none" stroke={SOR} strokeWidth="2.5" strokeDasharray="7,4" markerEnd="url(#mS)"/>
+  </A>
+  <A d={.75} anim={anim}><SBar x={295} y={265}/><SBar x={155} y={415}/></A>
+  <A d={1.4} anim={anim}>
+    <path d="M 157 448 Q 218 408 282 362" fill="none" stroke={GLD} strokeWidth="3" markerEnd="url(#mC)"/>
+    <path d="M 308 238 Q 242 335 168 438" fill="none" stroke={LBL} strokeWidth="2.5" strokeDasharray="5,3" markerEnd="url(#mC2)"/>
+  </A>
+  <A d={2.1} anim={anim}><line x1="379" y1="522" x2="284" y2="364" stroke="white" strokeWidth="2.5" strokeDasharray="8,5" markerEnd="url(#mP)"/></A>
+  <JP x={140} y={230} n="5"/><JP x={320} y={230} n="4"/>
+  <JP x={140} y={448} n="3"/><JP x={320} y={448} n="2"/>
+  <Inbounder/>
+</>);}
+
+function PlayJ13({anim}){return(<>
+  <A d={0} anim={anim}>
+    <path d="M 302 445 Q 248 370 193 272" fill="none" stroke={SOR} strokeWidth="2.5" strokeDasharray="7,4" markerEnd="url(#mS)"/>
+  </A>
+  <A d={.75} anim={anim}><SBar x={190} y={268} h/></A>
+  <A d={1.4} anim={anim}>
+    <path d="M 157 232 Q 218 295 318 385" fill="none" stroke={GLD} strokeWidth="3" markerEnd="url(#mC)"/>
+    <path d="M 320 230 L 420 265" fill="none" stroke={LBL} strokeWidth="2.5" strokeDasharray="5,3" markerEnd="url(#mC2)"/>
+  </A>
+  <A d={2.1} anim={anim}><line x1="379" y1="522" x2="319" y2="387" stroke="white" strokeWidth="2.5" strokeDasharray="8,5" markerEnd="url(#mP)"/></A>
+  <JP x={140} y={230} n="5"/><JP x={320} y={230} n="4"/>
+  <JP x={140} y={448} n="3"/><JP x={320} y={448} n="2"/>
+  <Inbounder/>
+</>);}
+
+function PlayCuerno({anim}){return(<>
+  <A d={0} anim={anim}>
+    <path d="M 302 339 Q 260 315 222 297" fill="none" stroke={SOR} strokeWidth="2.5" strokeDasharray="7,4" markerEnd="url(#mS)"/>
+    <path d="M 157 230 Q 168 260 178 293" fill="none" stroke={SOR} strokeWidth="2.5" strokeDasharray="7,4" markerEnd="url(#mS)"/>
+  </A>
+  <A d={.75} anim={anim}><SBar x={222} y={297}/><SBar x={178} y={297}/></A>
+  <A d={1.4} anim={anim}>
+    <path d="M 302 445 Q 252 400 210 295 Q 196 298 226 420" fill="none" stroke={GLD} strokeWidth="3" markerEnd="url(#mC)"/>
+    <path d="M 320 230 L 425 265" fill="none" stroke={LBL} strokeWidth="2.5" strokeDasharray="5,3" markerEnd="url(#mC2)"/>
+  </A>
+  <A d={2.1} anim={anim}><line x1="379" y1="522" x2="228" y2="422" stroke="white" strokeWidth="2.5" strokeDasharray="8,5" markerEnd="url(#mP)"/></A>
+  <JP x={140} y={230} n="5"/><JP x={320} y={230} n="4"/>
+  <JP x={320} y={339} n="3"/><JP x={320} y={448} n="2"/>
+  <Inbounder/>
+</>);}
+
+// ── ATAQUES ──
+
+function FormLibre(){
+  return(<>
+    <JP x={140} y={448} n="5"/>
+    <JP x={320} y={448} n="4"/>
+    <JP x={230} y={208} n="1"/>
+    <JP x={384} y={264} n="2"/>
+    <JP x={76}  y={264} n="3"/>
+  </>);
+}
+
+function FormClaudio(){
+  // 5 y 4 en postes del área; 3 fuera del área a la derecha, misma altura
+  // 1 y 2 en la zona alta del arco de 3
+  return(<>
+    <JP x={140} y={448} n="5"/>
+    <JP x={400} y={448} n="3"/>
+    <JP x={320} y={448} n="4"/>
+    <JP x={148} y={222} n="1"/>
+    <JP x={312} y={222} n="2"/>
+  </>);
+}
+
+function FormPuno(){
+  return(<>
+    <JP x={230} y={208} n="1"/>
+    <JP x={384} y={264} n="2"/>
+    <JP x={76}  y={264} n="3"/>
+    <JP x={438} y={328} n="4"/>
+    <JP x={22}  y={328} n="5"/>
+  </>);
+}
+
+// ── Data ──
+
+const PLAYS = [
+  {title:"Jugada 11", sub:"Cruce horizontal",          Comp:PlayJ11,
+   desc:"Los pares del mismo nivel se cruzan. 2 cortina a 3 en los postes bajos. 5 cortina a 4 en los postes altos. 3 corta para recibir el saque."},
+  {title:"Jugada 12", sub:"Cruce vertical",             Comp:PlayJ12,
+   desc:"Mismos pares que la 11, pero cruce vertical. 2 sube y cortina a 3. 5 baja y cortina a 4. 3 corta hacia arriba para recibir. 4 corta al aro como opción secundaria."},
+  {title:"Jugada 13", sub:"Cruce diagonal",             Comp:PlayJ13,
+   desc:"Una cortina diagonal. 2 sube en diagonal y cortina a 5. 5 corta y recibe el saque. 4 se abre como opción secundaria."},
+  {title:"Cuerno",    sub:"Triple poste + doble cortina", Comp:PlayCuerno,
+   desc:"Formación cuerno: 2, 3 y 4 apilados en el poste derecho, 5 en el izquierdo. 3 y 5 forman doble cortina. 2 cruza usándola y recibe. 4 se abre al costado."},
+];
+
+const ATTACKS = [
+  {title:"Libre",   sub:"2 postes + 3 en el arco", Comp:FormLibre,
+   desc:"4 y 5 en los postes bajos. 1 en el tope, 2 en el ala derecha y 3 en el ala izquierda, los tres espaciando sobre la línea de 3 puntos."},
+  {title:"Claudio", sub:"3 postes + 2 arriba",     Comp:FormClaudio,
+   desc:"5 en el poste izquierdo, 4 en el poste derecho del área. 3 fuera del área a la derecha, en la misma línea horizontal que 4 y 5. 1 y 2 en la zona alta del arco de 3."},
+  {title:"Puño",    sub:"5 en el arco",            Comp:FormPuno,
+   desc:"Los 5 jugadores repartidos sobre la línea de 3 puntos: 1 en el tope, 2 y 3 en las alas, 4 y 5 en las esquinas. Espaciado máximo."},
+];
+
+// ── App ──
+
+function Jugadas(){
+  const [authed,setAuthed]   = useState(false);
+  const [input,setInput]     = useState("");
+  const [err,setErr]         = useState(false);
+  const [section,setSection] = useState("salidas");
+  const [playIdx,setPlayIdx] = useState(0);
+  const [anim,setAnim]       = useState(false);
+  const [animKey,setAnimKey] = useState(0);
+
+  const tryAuth   = () => { if(input===PASS){setAuthed(true);setErr(false);}else setErr(true); };
+  const switchSec = s  => { setSection(s); setPlayIdx(0); setAnim(false); setAnimKey(k=>k+1); };
+  const goPlay    = i  => { setPlayIdx(i); setAnim(false); setAnimKey(k=>k+1); };
+  const startAnim = () => { setAnim(true);  setAnimKey(k=>k+1); };
+  const stopAnim  = () => { setAnim(false); setAnimKey(k=>k+1); };
+
+  const isSalidas = section === "salidas";
+  const plays     = isSalidas ? PLAYS : ATTACKS;
+  const {title,sub,Comp,desc} = plays[playIdx];
+  const accent = isSalidas ? ORC : BLC;
+
+  const CSS = `
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    @keyframes fIn { from { opacity:0 } to { opacity:1 } }
+    .wrap {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 14px; min-height: 100vh;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+    .hdr  { display:flex; justify-content:space-between; align-items:center;
+            width:100%; max-width:520px; margin-bottom:12px; }
+    .sec-row { display:flex; gap:8px; width:100%; max-width:520px; margin-bottom:12px; }
+    .tab-row { display:flex; gap:6px; width:100%; max-width:520px;
+               margin-bottom:12px; flex-wrap:wrap; }
+    .court  { width:100%; max-width:520px; border-radius:10px;
+              box-shadow:0 6px 24px rgba(0,0,0,.22); }
+    .ctrl   { display:flex; gap:8px; margin-top:10px; }
+    .legend { display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+              margin-top:10px; width:100%; max-width:520px; }
+    .desc   { margin-top:10px; width:100%; max-width:520px;
+              background:#f4f4f2;
+              border:1px solid rgba(0,0,0,0.13);
+              border-radius:8px; padding:12px 16px;
+              font-size:.83rem; line-height:1.7;
+              color:#1a1a1a; }
+    .login-wrap { min-height:100vh; display:flex; flex-direction:column;
+                  align-items:center; justify-content:center;
+                  background:#ffffff;
+                  font-family:Arial,sans-serif; gap:20px; padding:16px; }
+    .login-box  { background:#f4f4f2;
+                  border:1px solid rgba(0,0,0,0.13);
+                  border-radius:12px; padding:28px 24px;
+                  display:flex; flex-direction:column; gap:14px;
+                  width:100%; max-width:300px; }
+    @media (max-width: 400px) {
+      .wrap { padding: 10px; }
+      .desc { font-size: .78rem; padding: 10px 12px; }
+    }
+  `;
+
+  const tabSt = (active) => ({
+    flex:"1 1 70px", padding:"7px 4px", borderRadius:"8px",
+    border:`2px solid ${active?accent:"rgba(0,0,0,0.13)"}`,
+    background:active?accent:"#f4f4f2",
+    color:active?"white":"#1a1a1a",
+    fontWeight:700, fontSize:".73rem", cursor:"pointer",
+    fontFamily:"Arial,sans-serif", lineHeight:"1.3",
+    transition:"all .15s", textAlign:"center",
+  });
+  const secSt = (active) => ({
+    flex:1, padding:"10px 8px", borderRadius:"8px",
+    border:`2px solid ${active?BLC:"rgba(0,0,0,0.13)"}`,
+    background:active?BLC:"#f4f4f2",
+    color:active?"white":"#1a1a1a",
+    fontWeight:700, fontSize:".78rem", letterSpacing:"1px",
+    cursor:"pointer", fontFamily:"Arial,sans-serif", transition:"all .15s",
+  });
+  const btnSt = (active) => ({
+    padding:"8px 18px", borderRadius:"8px",
+    border:`2px solid ${active?accent:"rgba(0,0,0,0.13)"}`,
+    background:active?accent:"transparent",
+    color:active?"white":"#1a1a1a",
+    fontWeight:active?700:400, fontSize:".84rem",
+    cursor:"pointer", fontFamily:"Arial,sans-serif",
+  });
+
+  if(!authed) return(
+    <>
+      <style>{CSS}</style>
+      <div className="login-wrap">
+        <div style={{textAlign:"center"}}>
+          <img src="img/logo3.png" alt="Levalle Básquet" style={{height:"90px",objectFit:"contain",marginBottom:"6px"}}/>
+          <div style={{fontSize:".72rem",color:"#666666",letterSpacing:"1px",marginTop:"2px"}}>pizarrón táctico</div>
+        </div>
+        <div className="login-box">
+          <div style={{fontSize:".82rem",color:"#666666",textAlign:"center"}}>ingresá la clave del equipo</div>
+          <input type="password" value={input}
+            onChange={e=>{setInput(e.target.value);setErr(false);}}
+            onKeyDown={e=>e.key==="Enter"&&tryAuth()}
+            placeholder="contraseña" autoFocus
+            style={{padding:"10px 14px",borderRadius:"8px",
+              border:`1.5px solid ${err?"#e44":"rgba(0,0,0,0.25)"}`,
+              background:"#ffffff",
+              color:"#1a1a1a",
+              fontSize:"1rem",outline:"none",fontFamily:"Arial,sans-serif",width:"100%"}}/>
+          {err && <div style={{fontSize:".78rem",color:"#e44",textAlign:"center"}}>clave incorrecta</div>}
+          <button onClick={tryAuth}
+            style={{padding:"10px",borderRadius:"8px",border:"none",
+              background:ORC,color:"white",fontWeight:700,fontSize:"1rem",
+              cursor:"pointer",fontFamily:"Arial,sans-serif"}}>ingresar</button>
+        </div>
+      </div>
+    </>
+  );
+
+  return(
+    <>
+      <style>{CSS}</style>
+      <div className="wrap">
+
+        {/* Header */}
+        <div className="hdr">
+          <div style={{display:"flex",alignItems:"center",gap:"8px"}}>
+            <img src="img/logo3.png" alt="Levalle Básquet" style={{height:"40px",objectFit:"contain"}}/>
+            <div style={{fontSize:".65rem",color:"#666666",letterSpacing:"1px"}}>
+              pizarrón táctico
+            </div>
+          </div>
+          <button onClick={()=>{setAuthed(false);setInput("");}}
+            style={{fontSize:".72rem",color:"#666666",background:"none",
+              border:"1px solid rgba(0,0,0,0.13)",borderRadius:"6px",
+              cursor:"pointer",padding:"4px 10px",fontFamily:"Arial,sans-serif",
+              whiteSpace:"nowrap"}}>salir</button>
+        </div>
+
+        {/* Sección */}
+        <div className="sec-row">
+          <button style={secSt(isSalidas)}  onClick={()=>switchSec("salidas")}>SALIDAS</button>
+          <button style={secSt(!isSalidas)} onClick={()=>switchSec("ataques")}>ATAQUES</button>
+        </div>
+
+        {/* Tabs */}
+        <div className="tab-row">
+          {plays.map((p,i)=>(
+            <button key={p.title} onClick={()=>goPlay(i)} style={tabSt(i===playIdx)}>
+              <div>{p.title}</div>
+              <div style={{fontWeight:400,fontSize:".58rem",opacity:.8}}>{p.sub}</div>
+            </button>
+          ))}
+        </div>
+
+        {/* Cancha SVG */}
+        <svg key={animKey} viewBox={`0 0 ${CW} ${CH}`} className="court">
+          <Mrkrs/>
+          <CourtBg/>
+          <Comp anim={anim}/>
+        </svg>
+
+        {/* Controles animación (solo Salidas) */}
+        {isSalidas && (
+          <div className="ctrl">
+            <button onClick={stopAnim}  style={btnSt(!anim)}>Estático</button>
+            <button onClick={startAnim} style={btnSt(anim)}>Animar ▶</button>
+          </div>
+        )}
+
+        {/* Leyenda (solo Salidas) */}
+        {isSalidas && (
+          <div className="legend">
+            {[
+              {c:GLD, l:"corta a recibir", d:false},
+              {c:LBL, l:"2ª opción",       d:true},
+              {c:SOR, l:"pone cortina",    d:true},
+              {c:"rgba(255,255,255,.85)", l:"pase", d:true},
+            ].map(({c,l,d})=>(
+              <div key={l} style={{display:"flex",alignItems:"center",gap:"4px"}}>
+                <svg width="26" height="10">
+                  <line x1="0" y1="5" x2="18" y2="5" stroke={c} strokeWidth="2.5" strokeDasharray={d?"5,3":"0"}/>
+                  <polygon points="18,1 26,5 18,9" fill={c}/>
+                </svg>
+                <span style={{color:"#666666",fontSize:".72rem"}}>{l}</span>
+              </div>
+            ))}
+            <div style={{display:"flex",alignItems:"center",gap:"4px"}}>
+              <div style={{width:"4px",height:"16px",background:CYN,borderRadius:"2px"}}/>
+              <span style={{color:"#666666",fontSize:".72rem"}}>cortina</span>
+            </div>
+          </div>
+        )}
+
+        {/* Descripción */}
+        <div className="desc" style={{borderLeft:`4px solid ${accent}`}}>
+          <div style={{color:accent,fontWeight:700,marginBottom:"3px"}}>{title} — {sub}</div>
+          <div>{desc}</div>
+        </div>
+
+      </div>
+    </>
+  );
+}
+
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<Jugadas/>);
+  </script>
+</body>
+</html>
