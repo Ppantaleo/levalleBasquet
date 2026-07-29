@@ -383,6 +383,176 @@
             box-shadow: 0 5px 20px rgba(232, 129, 33, 0.4);
         }
 
+        /* MODAL DE PAGO */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 51, 102, 0.75);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-box {
+            background: white;
+            border-radius: 20px;
+            max-width: 520px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            background: var(--azul-profundo);
+            color: white;
+            padding: 2rem 2.5rem 1.5rem;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .modal-header h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .modal-header .modal-plan {
+            color: var(--naranja-balon);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0.2rem 0.6rem;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-body {
+            padding: 2rem 2.5rem 2.5rem;
+        }
+
+        .modal-dato {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-dato .label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--gris-halcon);
+            margin-bottom: 0.4rem;
+        }
+
+        .modal-dato .valor {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--azul-profundo);
+            background: var(--blanco-off);
+            border-left: 4px solid var(--naranja-balon);
+            padding: 0.7rem 1rem;
+            border-radius: 0 8px 8px 0;
+            word-break: break-word;
+        }
+
+        .modal-nota {
+            background: rgba(232, 129, 33, 0.12);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            font-size: 1rem;
+            color: var(--gris-halcon);
+            line-height: 1.5;
+            margin-bottom: 1.8rem;
+        }
+
+        .modal-nota strong {
+            color: var(--azul-profundo);
+        }
+
+        .modal-gracias {
+            text-align: center;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--naranja-balon);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-wsp {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 1.1rem;
+            background: var(--naranja-balon);
+            color: white;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .modal-wsp:hover {
+            background: #d17019;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(232, 129, 33, 0.4);
+        }
+
+        @media (max-width: 480px) {
+            .modal-header {
+                padding: 1.8rem 1.5rem 1.2rem;
+            }
+
+            .modal-header h3 {
+                font-size: 1.6rem;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .modal-dato .valor {
+                font-size: 1.4rem;
+            }
+        }
+
         /* SPONSORS ACTUALES */
         .sponsors-actuales {
             padding: 100px 0;
@@ -905,7 +1075,7 @@
                     <div class="plan-header">
                         <div class="plan-nombre">Pago único</div>
                         <div class="plan-precio">
-                            $80.000
+                            $100.000
                             <small>ARS</small>
                         </div>
                         <div class="plan-detalle">un solo pago - 20% de descuento</div>
@@ -919,9 +1089,9 @@
                             <li>Invitaciones a eventos</li>
                             <li>Certificado de sponsor</li>
                             <li>Pago total al momento</li>
-                            <li>Ahorro de $20.000</li>
+                            <li>Ahorro de $25.000</li>
                         </ul>
-                        <a href="#contactar" class="plan-cta">Elegir este plan</a>
+                        <button type="button" class="plan-cta" onclick="abrirModalPago('unico')">Elegir este plan</button>
                     </div>
                 </div>
 
@@ -930,10 +1100,10 @@
                     <div class="plan-header">
                         <div class="plan-nombre">Plan cuotas</div>
                         <div class="plan-precio">
-                            5 x $20.000
+                            5 x $25.000
                             <small>ARS</small>
                         </div>
-                        <div class="plan-detalle">marzo a julio 2026</div>
+                        <div class="plan-detalle">agosto a diciembre 2026</div>
                     </div>
                     <div class="plan-body">
                         <ul class="plan-features">
@@ -943,10 +1113,10 @@
                             <li>Contenido audiovisual</li>
                             <li>Invitaciones a eventos</li>
                             <li>Certificado de sponsor</li>
-                            <li>Primera cuota: marzo 2026</li>
+                            <li>Primera cuota: agosto 2026</li>
                             <li>Facilidades de pago</li>
                         </ul>
-                        <a href="#contactar" class="plan-cta">Elegir este plan</a>
+                        <button type="button" class="plan-cta" onclick="abrirModalPago('cuotas')">Elegir este plan</button>
                     </div>
                 </div>
             </div>
@@ -1088,6 +1258,32 @@
         </div>
     </section>
 
+    <!-- MODAL DATOS DE PAGO -->
+    <div class="modal-overlay" id="modalPago" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+        <div class="modal-box">
+            <button type="button" class="modal-close" onclick="cerrarModalPago()" aria-label="Cerrar">&times;</button>
+            <div class="modal-header">
+                <h3 id="modalTitulo">Datos para transferir</h3>
+                <div class="modal-plan" id="modalPlan"></div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-dato">
+                    <div class="label">Alias</div>
+                    <div class="valor">Levallebasquet</div>
+                </div>
+                <div class="modal-dato">
+                    <div class="label">Enviar comprobante a</div>
+                    <div class="valor">+54 9 3385 46-0595</div>
+                </div>
+                <div class="modal-nota" id="modalNota">
+                    <strong>Importante:</strong> si elegís el plan mensual, por favor recordá notificar el pago todos los meses.
+                </div>
+                <div class="modal-gracias">¡Muchas gracias!</div>
+                <a href="https://wa.me/5493385460595" target="_blank" class="modal-wsp">📱 Enviar comprobante por WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
@@ -1161,6 +1357,37 @@
                     document.querySelector('.nav-links').classList.remove('active');
                 }
             });
+        });
+
+        // Modal datos de pago
+        function abrirModalPago(plan) {
+            const modal = document.getElementById('modalPago');
+            const titulo = document.getElementById('modalPlan');
+            const nota = document.getElementById('modalNota');
+
+            if (plan === 'cuotas') {
+                titulo.textContent = 'Plan cuotas - 5 x $25.000';
+                nota.innerHTML = '<strong>Importante:</strong> al elegir el plan mensual, por favor recordá notificar el pago todos los meses enviando el comprobante.';
+            } else {
+                titulo.textContent = 'Pago único - $100.000';
+                nota.innerHTML = '<strong>Importante:</strong> una vez realizada la transferencia, envianos el comprobante para confirmar tu sponsoreo.';
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarModalPago() {
+            document.getElementById('modalPago').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('modalPago').addEventListener('click', function (e) {
+            if (e.target === this) cerrarModalPago();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') cerrarModalPago();
         });
     </script>
 </body>

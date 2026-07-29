@@ -455,6 +455,144 @@
         }
 
         /* GALERÍA */
+        /* CAMISETAS 2026 */
+        .camisetas {
+            padding: 120px 5%;
+            background: linear-gradient(180deg, var(--blanco-off) 0%, white 100%);
+            text-align: center;
+        }
+
+        .camisetas-intro {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 700px;
+            margin: 2rem auto 3.5rem;
+            line-height: 1.7;
+        }
+
+        .camisetas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .camiseta-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(17, 51, 102, 0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .camiseta-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(17, 51, 102, 0.22);
+        }
+
+        .camiseta-img {
+            position: relative;
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+
+        .camiseta-img picture {
+            display: block;
+        }
+
+        .camiseta-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .camiseta-card:hover .camiseta-img img {
+            transform: scale(1.04);
+        }
+
+        .camiseta-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--naranja-balon);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .camiseta-info {
+            padding: 1.8rem 1.5rem 2rem;
+        }
+
+        .camiseta-info h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            color: var(--azul-profundo);
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .camiseta-info p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Lightbox camisetas */
+        .camiseta-lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 51, 102, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .camiseta-lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .camiseta-lightbox picture {
+            display: contents;
+        }
+
+        .camiseta-lightbox img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .camiseta-lightbox .cerrar {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 3rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .camisetas-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
         .galeria {
             padding: 120px 5%;
             background: var(--azul-profundo);
@@ -1011,6 +1149,7 @@
                 </div>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#categorias">Categorías</a></li>
+                <li><a href="#camisetas">Camisetas</a></li>
                 <li><a href="sponsors.html">Sponsors</a></li>
                 <li><a href="#contacto">Contacto</a></li>
                 <li><a href="#contacto" class="cta-button">¡Sumate al equipo!</a></li>
@@ -1094,6 +1233,53 @@
         </div>
     </section>
 
+    <!-- CAMISETAS 2026 -->
+    <section class="camisetas fade-in" id="camisetas">
+        <div class="container">
+            <h2 class="section-title">Camisetas 2026</h2>
+            <p class="camisetas-intro">Presentamos la nueva indumentaria de la temporada 2026. Dos modelos que llevan el escudo de Levalle a cada cancha, junto a las marcas que hacen posible nuestro club.</p>
+
+            <div class="camisetas-grid">
+                <div class="camiseta-card">
+                    <div class="camiseta-img" onclick="abrirCamiseta('img/camiseta1.webp', 'img/camiseta1.jpeg')">
+                        <span class="camiseta-badge">Titular</span>
+                        <picture>
+                            <source srcset="img/camiseta1.webp" type="image/webp">
+                            <img src="img/camiseta1.jpeg" alt="Camiseta titular Levalle Basketball temporada 2026" width="1199" height="1600" loading="lazy">
+                        </picture>
+                    </div>
+                    <div class="camiseta-info">
+                        <h3>Modelo titular</h3>
+                        <p>Azul con vivos en verde. La que nos identifica cada vez que jugamos de local.</p>
+                    </div>
+                </div>
+
+                <div class="camiseta-card">
+                    <div class="camiseta-img" onclick="abrirCamiseta('img/camiseta.webp', 'img/camiseta.jpeg')">
+                        <span class="camiseta-badge">Alternativa</span>
+                        <picture>
+                            <source srcset="img/camiseta.webp" type="image/webp">
+                            <img src="img/camiseta.jpeg" alt="Camiseta alternativa Levalle Basketball temporada 2026" width="1199" height="1600" loading="lazy">
+                        </picture>
+                    </div>
+                    <div class="camiseta-info">
+                        <h3>Modelo alternativo</h3>
+                        <p>Blanca con detalles en azul y verde. Nuestra segunda piel para los partidos de visitante.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX CAMISETAS -->
+    <div class="camiseta-lightbox" id="camisetaLightbox" onclick="cerrarCamiseta()">
+        <button type="button" class="cerrar" aria-label="Cerrar">&times;</button>
+        <picture>
+            <source srcset="" type="image/webp" id="camisetaLightboxSource">
+            <img src="" alt="Camiseta Levalle Basketball 2026" id="camisetaLightboxImg">
+        </picture>
+    </div>
+
     <!-- GALERÍA -->
     <section class="galeria fade-in">
         <div class="container">
@@ -1146,13 +1332,13 @@
                     <div class="precio-opciones">
                         <div class="precio-card">
                             <h4>Pago único</h4>
-                            <div class="precio-valor">$80.000</div>
+                            <div class="precio-valor">$100.000</div>
                             <div class="precio-detalle">bonificado - un solo pago</div>
                         </div>
                         <div class="precio-card">
                             <h4>Plan cuotas</h4>
-                            <div class="precio-valor">5 x $20.000</div>
-                            <div class="precio-detalle">marzo a julio 2026</div>
+                            <div class="precio-valor">5 x $25.000</div>
+                            <div class="precio-detalle">agosto a diciembre 2026</div>
                         </div>
                     </div>
                     
@@ -1377,6 +1563,23 @@
                     document.querySelector('.nav-links').classList.remove('active');
                 }
             });
+        });
+
+        // Lightbox camisetas
+        function abrirCamiseta(webp, jpeg) {
+            document.getElementById('camisetaLightboxSource').srcset = webp;
+            document.getElementById('camisetaLightboxImg').src = jpeg;
+            document.getElementById('camisetaLightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarCamiseta() {
+            document.getElementById('camisetaLightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') cerrarCamiseta();
         });
     </script>
 </body>
